@@ -1,40 +1,28 @@
-from pathlib import Path
+from backend.embeddings import embed
+from backend.vector_store import collection
 
-KNOWLEDGE_BASE_DIR = Path("knowledge_base")
 
-
-def search_knowledge(query: str, limit: int = 5) -> str:
+def search_knowledge(
+    query: str,
+    limit: int = 5
+) -> str:
     """
-    Very simple keyword search.
-    Returns the most relevant markdown documents.
+    Semantic search using ChromaDB.
     """
 
-    query = query.lower()
-
-    results = []
-
-    for file in KNOWLEDGE_BASE_DIR.rglob("*.md"):
-
-        text = file.read_text(
-            encoding="utf-8"
-        )
-
-        score = text.lower().count(query)
-
-        if score > 0:
-            results.append(
-                (
-                    score,
-                    file,
-                    text
-                )
-            )
-
-    results.sort(
-        reverse=True,
-        key=lambda x: x[0]
+    results = collection.query(
+        query_embeddings=[
+            embed(query)
+        ],
+        n_results=limit
     )
 
+    documents = results.get(
+        "documents",
+        [[]]
+    )[0]
+
+    return "\n\n".join(documents)
     context = []
 
     for score, file, text in results[:limit]:
