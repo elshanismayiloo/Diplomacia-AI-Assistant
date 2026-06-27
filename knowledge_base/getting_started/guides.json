@@ -1,0 +1,52 @@
+{
+  "category": "getting_started",
+  "version": "1.0",
+  "guides": [
+    {
+      "id": "GUIDE-GS-001",
+      "title": "İlk 24 Saat",
+      "target": "Yeni oyunçular",
+      "goal": "İlk gündə hesabın düzgün inkişaf istiqamətini müəyyən etmək.",
+      "steps": [
+        {
+          "order": 1,
+          "title": "Sinif seç",
+          "description": "İlk girişdə oyun tərzinə uyğun sinif seç. Sonradan hər 7 gündə bir dəyişmək mümkündür."
+        },
+        {
+          "order": 2,
+          "title": "Bilim Adamı bacarığını inkişaf etdir",
+          "description": "İlk prioritet aktiv bacarıq Bilim Adamıdır. Bu bacarıq fabrik gəlirlərini artırır və depo tutumunu genişləndirir."
+        },
+        {
+          "order": 3,
+          "title": "Elmas fabrikində işləməyə başla",
+          "description": "Mümkün qədər inkişaf etmiş bölgədə yerləşən yüksək səviyyəli Elmas fabrikini seç."
+        },
+        {
+          "order": 4,
+          "title": "Saatlıq pulsuz Askeri Operasyonlardan istifadə et",
+          "description": "XP qazanmaq üçün pulsuz əməliyyatlar kifayətdir. Enerji haplarını erkən mərhələdə sərf etmə."
+        },
+        {
+          "order": 5,
+          "title": "Vergi Uzmanı passiv bacarığını inkişaf etdir",
+          "description": "İlk passiv bacarıq xallarını Vergi Uzmanı üçün istifadə etmək tövsiyə olunur."
+        }
+      ],
+      "avoid": [
+        "Enerji haplarını müharibələrdə xərcləmə.",
+        "Aşağı gəlirli fabriklərdə uzun müddət işləmə.",
+        "İlk gün öz fabrikinı qurmağa çalışma.",
+        "Bütün diqqətini siyasətə yönəltmə."
+      ],
+      "related_concepts": [
+        "GS-003",
+        "SK-001",
+        "SK-005",
+        "WR-001"
+      ],
+      "confidence": "Experience"
+    }
+  ]
+}
