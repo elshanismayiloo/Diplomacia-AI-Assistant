@@ -20,21 +20,36 @@ def build_database():
         )
 
         collection.add(
-            ids=[
-                str(file)
-            ],
-            documents=[
-                text
-            ],
-            embeddings=[
-                embed(text)
-            ],
-            metadatas=[
-                {
-                    "file": str(file)
-                }
-            ]
-        )
+            from backend.chunker import chunk_markdown
+
+...
+
+chunks = chunk_markdown(text)
+
+for i, chunk in enumerate(chunks):
+
+    collection.add(
+
+        ids=[
+            f"{file}_{i}"
+        ],
+
+        documents=[
+            chunk
+        ],
+
+        embeddings=[
+            embed(chunk)
+        ],
+
+        metadatas=[
+            {
+                "file": str(file),
+                "chunk": i
+            }
+        ]
+    )
+    )
 
     print("Knowledge Base indexed successfully.")
 
