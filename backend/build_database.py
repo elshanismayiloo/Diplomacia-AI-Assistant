@@ -1,5 +1,6 @@
 from pathlib import Path
 
+from backend.chunker import chunk_markdown
 from backend.embeddings import embed
 from backend.vector_store import collection
 
@@ -7,49 +8,51 @@ KNOWLEDGE_BASE = Path("knowledge_base")
 
 
 def build_database():
+    """
+    Reads all Markdown files, splits them into chunks,
+    creates embeddings and stores them in ChromaDB.
+    """
 
+    # Delete previous collection contents
     try:
-        collection.delete(where={})
+        existing = collection.get()
+
+        if existing["ids"]:
+            collection.delete(
+                ids=existing["ids"]
+            )
+
     except Exception:
         pass
 
+    # Read every markdown file
     for file in KNOWLEDGE_BASE.rglob("*.md"):
 
         text = file.read_text(
             encoding="utf-8"
         )
 
-        collection.add(
-            from backend.chunker import chunk_markdown
+        chunks = chunk_markdown(text)
 
-...
+        for index, chunk in enumerate(chunks):
 
-chunks = chunk_markdown(text)
-
-for i, chunk in enumerate(chunks):
-
-    collection.add(
-
-        ids=[
-            f"{file}_{i}"
-        ],
-
-        documents=[
-            chunk
-        ],
-
-        embeddings=[
-            embed(chunk)
-        ],
-
-        metadatas=[
-            {
-                "file": str(file),
-                "chunk": i
-            }
-        ]
-    )
-    )
+            collection.add(
+                ids=[
+                    f"{file.as_posix()}::{index}"
+                ],
+                documents=[
+                    chunk
+                ],
+                embeddings=[
+                    embed(chunk)
+                ],
+                metadatas=[
+                    {
+                        "file": file.as_posix(),
+                        "chunk": index
+                    }
+                ]
+            )
 
     print("Knowledge Base indexed successfully.")
 
