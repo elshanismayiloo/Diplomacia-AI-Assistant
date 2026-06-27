@@ -1,21 +1,27 @@
 from pathlib import Path
 
 from backend.chat import ask_ai
-from backend.loader import load_knowledge_base
+from backend.search import search_knowledge
 
 
 SYSTEM_PROMPT = Path(
     "prompts/system_prompt.md"
-).read_text(encoding="utf-8")
+).read_text(
+    encoding="utf-8"
+)
 
-CONTEXT = load_knowledge_base()
+QUESTION = input("Question: ")
 
-QUESTION = "Bilim Adamı nedir?"
+CONTEXT = search_knowledge(
+    QUESTION
+)
+
+print()
 
 print(
     ask_ai(
         SYSTEM_PROMPT,
         CONTEXT,
-        QUESTION,
+        QUESTION
     )
 )
