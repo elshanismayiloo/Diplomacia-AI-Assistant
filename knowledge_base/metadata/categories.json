@@ -1,0 +1,55 @@
+{
+  "version": "1.0",
+  "categories": [
+    {
+      "id": "getting_started",
+      "name": "Getting Started",
+      "description": "Topics related to starting the game."
+    },
+    {
+      "id": "classes",
+      "name": "Classes",
+      "description": "Player classes and their bonuses."
+    },
+    {
+      "id": "skills",
+      "name": "Skills",
+      "description": "Active and passive player skills."
+    },
+    {
+      "id": "economy",
+      "name": "Economy",
+      "description": "Factories, work system and income."
+    },
+    {
+      "id": "market",
+      "name": "Market",
+      "description": "Resources and trading."
+    },
+    {
+      "id": "regions",
+      "name": "Regions",
+      "description": "Regions, indexes and infrastructure."
+    },
+    {
+      "id": "government",
+      "name": "Government",
+      "description": "Countries, elections, parliament and cabinet."
+    },
+    {
+      "id": "war",
+      "name": "War",
+      "description": "Military operations and combat."
+    },
+    {
+      "id": "media",
+      "name": "Media",
+      "description": "Newspapers and propaganda."
+    },
+    {
+      "id": "faq",
+      "name": "FAQ",
+      "description": "Frequently asked questions."
+    }
+  ]
+}
