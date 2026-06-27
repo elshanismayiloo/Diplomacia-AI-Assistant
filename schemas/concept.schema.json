@@ -1,0 +1,21 @@
+{
+  "id": "string",
+  "title": "string",
+  "category": "string",
+  "summary": "string",
+  "explanation": "string",
+  "practical_advice": [
+    "string"
+  ],
+  "common_mistakes": [
+    "string"
+  ],
+  "related_concepts": [
+    "string"
+  ],
+  "keywords": [
+    "string"
+  ],
+  "confidence": "Official | Community | Experience",
+  "last_updated": "YYYY-MM-DD"
+}
