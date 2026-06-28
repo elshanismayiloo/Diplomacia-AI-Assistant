@@ -1,27 +1,48 @@
-from backend.chat import ask
+from pathlib import Path
+
+from google.genai import types
+
+from backend.config import (
+    MODEL_NAME,
+    TEMPERATURE,
+    MAX_TOKENS
+)
+
+from backend.gemini_client import client
+from backend.search import search_knowledge
 
 
-while True:
+SYSTEM_PROMPT = Path(
+    "prompts/system_prompt.md"
+).read_text(
+    encoding="utf-8"
+)
 
-    question = input("\nYou: ")
 
-    if question.lower() in [
-        "exit",
-        "quit"
-    ]:
-        break
+def ask(question: str):
 
-    answer = ask(question)
+    context = search_knowledge(question)
 
-    print()
+    prompt = f"""
+Knowledge Corpus
 
-    print("AI:")
+{context}
 
-    print(answer)
+------------------------
+
+User Question
+
 {question}
-""",
-            },
-        ],
+"""
+
+    response = client.models.generate_content(
+        model=MODEL_NAME,
+        config=types.GenerateContentConfig(
+            system_instruction=SYSTEM_PROMPT,
+            temperature=TEMPERATURE,
+            max_output_tokens=MAX_TOKENS
+        ),
+        contents=prompt
     )
 
-    return response.output_text.strip()
+    return response.text
