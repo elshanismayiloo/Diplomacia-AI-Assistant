@@ -28,7 +28,7 @@ Knowledge Corpus
 
 {context}
 
-------------------------
+-----------------------------------
 
 User Question
 
@@ -37,12 +37,12 @@ User Question
 
     response = client.models.generate_content(
         model=MODEL_NAME,
+        contents=prompt,
         config=types.GenerateContentConfig(
             system_instruction=SYSTEM_PROMPT,
             temperature=TEMPERATURE,
             max_output_tokens=MAX_TOKENS
-        ),
-        contents=prompt
+        )
     )
 
     return response.text
