@@ -3,11 +3,11 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
-OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
+GEMINI_API_KEY = os.getenv("GEMINI_API_KEY")
 
 MODEL_NAME = os.getenv(
-    "OPENAI_MODEL",
-    "gpt-5.5"
+    "MODEL_NAME",
+    "gemini-2.5-flash"
 )
 
 TEMPERATURE = float(
